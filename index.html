@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axiom — Your AI Employee Never Sleeps</title>
+<meta name="description" content="A pre-configured Mac Mini loaded with custom AI automation. Always on, always working, built for your business.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #06060b;
+  --bg-secondary: #0c0c14;
+  --bg-card: rgba(14, 14, 24, 0.6);
+  --text-primary: #e8e8ed;
+  --text-secondary: #8a8a9a;
+  --text-muted: #5a5a6a;
+  --accent: #00b4ff;
+  --accent-2: #6c5ce7;
+  --accent-glow: rgba(0, 180, 255, 0.15);
+  --gradient-1: linear-gradient(135deg, #00b4ff, #6c5ce7);
+  --gradient-2: linear-gradient(135deg, #00b4ff 0%, #00d4aa 50%, #6c5ce7 100%);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(0, 180, 255, 0.2);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ========== UTILITY ========== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========== ANIMATIONS ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ========== NAVIGATION ========== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: all 0.4s ease;
+}
+
+.nav.scrolled {
+  background: rgba(6, 6, 11, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 14px 0;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.nav-logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.nav-logo span {
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-cta {
+  padding: 10px 24px !important;
+  background: var(--gradient-1) !important;
+  color: #fff !important;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  transition: opacity 0.3s, transform 0.3s !important;
+}
+
+.nav-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.nav-mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-mobile-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-primary);
+  margin: 6px 0;
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+/* ========== HERO ========== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(0, 180, 255, 0.08) 0%, rgba(108, 92, 231, 0.04) 40%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(108, 92, 231, 0.06) 0%, transparent 60%);
+  border-radius: 50%;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, black 20%, transparent 70%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-text {
+  max-width: 560px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(0, 180, 255, 0.08);
+  border: 1px solid rgba(0, 180, 255, 0.15);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 180, 255, 0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(0, 180, 255, 0); }
+}
+
+.hero h1 {
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+}
+
+.hero h1 .gradient-text {
+  background: var(--gradient-2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-description {
+  font-size: 19px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--gradient-1);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 30px rgba(0, 180, 255, 0.2), 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(0, 180, 255, 0.3), 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.btn-primary svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s;
+}
+
+.btn-primary:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Hero Device Visual */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.device-container {
+  position: relative;
+  width: 380px;
+  height: 380px;
+}
+
+.device-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 80px rgba(0, 180, 255, 0.08),
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  z-index: 3;
+}
+
+.device-body::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+}
+
+.device-led {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--accent), 0 0 30px rgba(0, 180, 255, 0.3);
+  animation: led-breathe 3s ease-in-out infinite;
+}
+
+@keyframes led-breathe {
+  0%, 100% { opacity: 1; box-shadow: 0 0 12px var(--accent), 0 0 30px rgba(0, 180, 255, 0.3); }
+  50% { opacity: 0.5; box-shadow: 0 0 6px var(--accent), 0 0 15px rgba(0, 180, 255, 0.15); }
+}
+
+.device-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  font-size: 36px;
+  opacity: 0.12;
+  color: #fff;
+}
+
+/* Orbit Rings */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(0, 180, 255, 0.08);
+  border-radius: 50%;
+  animation: orbit-spin 20s linear infinite;
+}
+
+.orbit-1 {
+  width: 260px;
+  height: 260px;
+  margin-top: -130px;
+  margin-left: -130px;
+}
+
+.orbit-2 {
+  width: 340px;
+  height: 340px;
+  margin-top: -170px;
+  margin-left: -170px;
+  animation-duration: 30s;
+  animation-direction: reverse;
+  border-color: rgba(108, 92, 231, 0.06);
+}
+
+.orbit-3 {
+  width: 380px;
+  height: 380px;
+  margin-top: -190px;
+  margin-left: -190px;
+  animation-duration: 40s;
+  border-color: rgba(0, 180, 255, 0.04);
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Orbit Nodes */
+.orbit-node {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: rgba(14, 14, 24, 0.9);
+  border: 1px solid rgba(0, 180, 255, 0.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.1);
+}
+
+.orbit-1 .orbit-node:nth-child(1) { top: -18px; left: 50%; margin-left: -18px; }
+.orbit-1 .orbit-node:nth-child(2) { bottom: -18px; left: 50%; margin-left: -18px; }
+.orbit-1 .orbit-node:nth-child(3) { top: 50%; left: -18px; margin-top: -18px; }
+.orbit-1 .orbit-node:nth-child(4) { top: 50%; right: -18px; margin-top: -18px; }
+
+.orbit-2 .orbit-node:nth-child(1) { top: 20px; right: 10px; }
+.orbit-2 .orbit-node:nth-child(2) { bottom: 20px; left: 10px; }
+.orbit-2 .orbit-node:nth-child(3) { top: 20px; left: 10px; }
+
+/* Glow effect behind device */
+.device-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(0, 180, 255, 0.1) 0%, rgba(108, 92, 231, 0.05) 40%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+}
+
+/* ========== PROBLEM SECTION ========== */
+.problem-section {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.problem-header {
+  max-width: 700px;
+  margin-bottom: 64px;
+}
+
+.problem-header h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.problem-card {
+  padding: 32px 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.problem-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.problem-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, rgba(0, 180, 255, 0.1), rgba(108, 92, 231, 0.1));
+  border: 1px solid rgba(0, 180, 255, 0.12);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.problem-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.problem-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ========== WHAT YOU GET ========== */
+.wyg-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 72px;
+}
+
+.wyg-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--border-subtle);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.wyg-card {
+  padding: 40px 28px;
+  background: var(--bg-secondary);
+  text-align: center;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.wyg-card:hover {
+  background: rgba(14, 14, 24, 0.8);
+}
+
+.wyg-card-number {
+  font-size: 48px;
+  font-weight: 900;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.3;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.wyg-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.wyg-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.wyg-callout {
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(0, 180, 255, 0.05), rgba(108, 92, 231, 0.05));
+  border: 1px solid rgba(0, 180, 255, 0.1);
+  border-radius: var(--radius);
+}
+
+.wyg-callout p {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.wyg-callout span {
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== USE CASES ========== */
+.use-cases-section {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.uc-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 72px;
+}
+
+.uc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.uc-card {
+  padding: 36px 30px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.uc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-1);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.uc-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.uc-card:hover::before {
+  opacity: 1;
+}
+
+.uc-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.uc-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.uc-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ========== PRICING ========== */
+.pricing-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 72px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.pricing-card {
+  position: relative;
+  padding: 44px 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-card.featured {
+  border-color: rgba(0, 180, 255, 0.3);
+  background: linear-gradient(180deg, rgba(0, 180, 255, 0.06) 0%, var(--bg-card) 40%);
+  box-shadow: 0 0 60px rgba(0, 180, 255, 0.08);
+  transform: scale(1.04);
+  z-index: 2;
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.04) translateY(-6px);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 20px;
+  background: var(--gradient-1);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.pricing-tier {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.pricing-name {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.pricing-amount {
+  margin-bottom: 8px;
+}
+
+.pricing-amount .price {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.pricing-amount .currency {
+  font-size: 22px;
+  font-weight: 600;
+  vertical-align: top;
+  position: relative;
+  top: 8px;
+  margin-right: 2px;
+  color: var(--text-secondary);
+}
+
+.pricing-amount .one-time {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+.pricing-recurring {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pricing-recurring span {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 36px;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.pricing-features li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 180, 255, 0.1);
+  border-radius: 50%;
+  margin-top: 1px;
+  position: relative;
+}
+
+.pricing-features li::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 5px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+/* Simpler check approach */
+.pricing-features li {
+  position: relative;
+  padding-left: 32px;
+}
+
+.pricing-features li::before {
+  position: absolute;
+  left: 0;
+  top: 1px;
+}
+
+.pricing-features li::after {
+  left: 6px;
+  top: 7px;
+}
+
+.pricing-card .btn-primary {
+  width: 100%;
+  justify-content: center;
+}
+
+.pricing-card .btn-outline {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.pricing-card .btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(0, 180, 255, 0.05);
+}
+
+/* ========== SOCIAL PROOF ========== */
+.proof-section {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.proof-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.proof-quote {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+}
+
+.proof-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+
+.proof-stat-number {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 900;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.proof-stat-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ========== FAQ ========== */
+.faq-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 64px;
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px 0;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.faq-question:hover {
+  color: var(--accent);
+}
+
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  font-size: 18px;
+  transition: all 0.3s;
+  color: var(--text-secondary);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-answer-inner {
+  padding-bottom: 24px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+/* ========== FINAL CTA ========== */
+.final-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0, 180, 255, 0.08) 0%, transparent 60%);
+}
+
+.final-cta-content {
+  position: relative;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.final-cta h2 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.final-cta-sub {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+  line-height: 1.7;
+}
+
+.email-form {
+  display: flex;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto 24px;
+}
+
+.email-form input {
+  flex: 1;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.email-form input::placeholder {
+  color: var(--text-muted);
+}
+
+.email-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 180, 255, 0.1);
+}
+
+.final-cta-or {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.final-cta-contact {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 32px;
+}
+
+.final-cta-contact a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.final-cta-contact a:hover {
+  text-decoration: underline;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.footer p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    text-align: center;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .device-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .device-body {
+    width: 140px;
+    height: 140px;
+  }
+
+  .orbit-1 { width: 210px; height: 210px; margin-top: -105px; margin-left: -105px; }
+  .orbit-2 { width: 270px; height: 270px; margin-top: -135px; margin-left: -135px; }
+  .orbit-3 { width: 300px; height: 300px; margin-top: -150px; margin-left: -150px; }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .pricing-card.featured {
+    transform: none;
+  }
+
+  .pricing-card.featured:hover {
+    transform: translateY(-6px);
+  }
+
+  .uc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: rgba(6, 6, 11, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 24px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-mobile-toggle {
+    display: block;
+  }
+
+  .problem-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wyg-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .uc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-stats {
+    gap: 32px;
+  }
+
+  .email-form {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .problem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wyg-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-stats {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Desk<span>Pilot</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#use-cases">Use Cases</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact" class="nav-cta">Book a Demo</a></li>
+    </ul>
+    <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">Always On &middot; Always Working</div>
+        <h1>Your <span class="gradient-text">AI Employee</span> Never Sleeps</h1>
+        <p class="hero-description">A pre-configured Mac Mini loaded with custom AI automation &mdash; always on, always working, built for your business.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            Book a Demo
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+          </a>
+          <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="device-container">
+          <div class="device-glow"></div>
+          <div class="orbit orbit-3"></div>
+          <div class="orbit orbit-2">
+            <div class="orbit-node" title="Data">&#9783;</div>
+            <div class="orbit-node" title="Email">&#9993;</div>
+            <div class="orbit-node" title="Docs">&#9634;</div>
+          </div>
+          <div class="orbit orbit-1">
+            <div class="orbit-node" title="Scrape">&#8663;</div>
+            <div class="orbit-node" title="Analyze">&#9881;</div>
+            <div class="orbit-node" title="Write">&#9998;</div>
+            <div class="orbit-node" title="Automate">&#9889;</div>
+          </div>
+          <div class="device-body">
+            <div class="device-logo">&#9633;</div>
+            <div class="device-led"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section class="section problem-section" id="problem">
+  <div class="container">
+    <div class="problem-header reveal">
+      <div class="section-label">The Problem</div>
+      <h2>You know AI can transform your business. You just don't have time to figure it out.</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="problem-icon">&#128104;&#8205;&#128187;</div>
+        <h3>Can't hire a developer</h3>
+        <p>AI engineers cost $150K+. You don't need a full-time hire. You need a system that works out of the box.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="problem-icon">&#9729;&#65039;</div>
+        <h3>Cloud AI is too generic</h3>
+        <p>ChatGPT and off-the-shelf tools don't understand your business. They give generic answers to specific problems.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-3">
+        <div class="problem-icon">&#9203;</div>
+        <h3>No time to learn</h3>
+        <p>You're running a business. You don't have 6 months to master prompt engineering and build workflows from scratch.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-4">
+        <div class="problem-icon">&#128200;</div>
+        <h3>Competitors are moving</h3>
+        <p>While you're researching, your competition is already automating. Every week you wait is a week they get ahead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What You Get -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="wyg-header reveal">
+      <div class="section-label">What You Get</div>
+      <h2 class="section-title">Everything configured. Nothing to figure out.</h2>
+      <p class="section-subtitle mx-auto">Four layers of value, delivered as a single turnkey system that sits on your desk and gets to work.</p>
+    </div>
+    <div class="wyg-grid reveal">
+      <div class="wyg-card">
+        <div class="wyg-card-number">01</div>
+        <h3>Hardware</h3>
+        <p>Apple Mac Mini (M4 or M4 Pro) pre-configured and ready to deploy. Compact, silent, powerful.</p>
+      </div>
+      <div class="wyg-card">
+        <div class="wyg-card-number">02</div>
+        <h3>AI Engine</h3>
+        <p>Claude Code with custom agents, automation scripts, and intelligent task orchestration.</p>
+      </div>
+      <div class="wyg-card">
+        <div class="wyg-card-number">03</div>
+        <h3>Custom Automations</h3>
+        <p>Industry-specific tools built for your workflows. Scrapers, analyzers, generators, monitors.</p>
+      </div>
+      <div class="wyg-card">
+        <div class="wyg-card-number">04</div>
+        <h3>Ongoing Support</h3>
+        <p>Remote monitoring, maintenance, updates, and new automation development as your needs evolve.</p>
+      </div>
+    </div>
+    <div class="wyg-callout reveal">
+      <p>Not just a computer. <span>A configured, trained, always-on AI system built for YOUR business.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases -->
+<section class="section use-cases-section" id="use-cases">
+  <div class="container">
+    <div class="uc-header reveal">
+      <div class="section-label">Use Cases</div>
+      <h2 class="section-title">What your AI employee can do</h2>
+      <p class="section-subtitle mx-auto">Real automations running in production today &mdash; not hypotheticals.</p>
+    </div>
+    <div class="uc-grid">
+      <div class="uc-card reveal reveal-delay-1">
+        <div class="uc-icon">&#127973;</div>
+        <h3>Healthcare Staffing</h3>
+        <p>Auto-scrapes 6 job boards daily, identifies target facilities, compiles and emails a digest of new opportunities by morning.</p>
+      </div>
+      <div class="uc-card reveal reveal-delay-2">
+        <div class="uc-icon">&#128221;</div>
+        <h3>Contract Review</h3>
+        <p>Upload a contract, get a redlined version with clause-by-clause legal analysis, risk flags, and suggested modifications.</p>
+      </div>
+      <div class="uc-card reveal reveal-delay-3">
+        <div class="uc-icon">&#128202;</div>
+        <h3>Market Intelligence</h3>
+        <p>Competitive rate analysis, salary benchmarking across regions, and trend reporting pulled from live data sources.</p>
+      </div>
+      <div class="uc-card reveal reveal-delay-1">
+        <div class="uc-icon">&#128196;</div>
+        <h3>Document Generation</h3>
+        <p>Sales pages, email sequences, proposals, and reports generated from templates and your business data.</p>
+      </div>
+      <div class="uc-card reveal reveal-delay-2">
+        <div class="uc-icon">&#128200;</div>
+        <h3>Data Analysis</h3>
+        <p>Spreadsheets, CSV processing, financial modeling, and custom reporting &mdash; processed automatically on schedule.</p>
+      </div>
+      <div class="uc-card reveal reveal-delay-3">
+        <div class="uc-icon">&#9993;</div>
+        <h3>Email Automation</h3>
+        <p>Drip sequences, follow-up campaigns, outreach emails, and response templates built and managed automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="pricing-header reveal">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Choose your AI employee</h2>
+      <p class="section-subtitle mx-auto">One-time hardware + setup fee. Monthly service includes support, monitoring, and all API costs.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Tier 1 -->
+      <div class="pricing-card reveal reveal-delay-1">
+        <div class="pricing-tier">Tier 1</div>
+        <div class="pricing-name">The Associate</div>
+        <div class="pricing-amount">
+          <span class="currency">$</span><span class="price">2,999</span>
+          <span class="one-time">one-time</span>
+        </div>
+        <div class="pricing-recurring">+ <span>$499</span>/month</div>
+        <ul class="pricing-features">
+          <li>Mac Mini M4 &mdash; configured &amp; shipped</li>
+          <li>Claude Code installed and configured</li>
+          <li>3 custom automations</li>
+          <li>Email support</li>
+          <li>All API costs included</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Get Started</a>
+      </div>
+      <!-- Tier 2 -->
+      <div class="pricing-card featured reveal reveal-delay-2">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Tier 2</div>
+        <div class="pricing-name">The Executive</div>
+        <div class="pricing-amount">
+          <span class="currency">$</span><span class="price">4,999</span>
+          <span class="one-time">one-time</span>
+        </div>
+        <div class="pricing-recurring">+ <span>$999</span>/month</div>
+        <ul class="pricing-features">
+          <li>Mac Mini M4 Pro &mdash; configured &amp; shipped</li>
+          <li>10 custom automations</li>
+          <li>Industry-specific agent suite</li>
+          <li>Weekly support call</li>
+          <li>Remote monitoring &amp; maintenance</li>
+          <li>All API costs included</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Book a Demo</a>
+      </div>
+      <!-- Tier 3 -->
+      <div class="pricing-card reveal reveal-delay-3">
+        <div class="pricing-tier">Tier 3</div>
+        <div class="pricing-name">The Command Center</div>
+        <div class="pricing-amount">
+          <span class="currency">$</span><span class="price">9,999</span>
+          <span class="one-time">one-time</span>
+        </div>
+        <div class="pricing-recurring">+ <span>$1,999</span>/month</div>
+        <ul class="pricing-features">
+          <li>Mac Mini M4 Pro (maxed) &mdash; configured &amp; shipped</li>
+          <li>Unlimited custom automations</li>
+          <li>Dedicated account manager</li>
+          <li>Priority support &amp; SLA</li>
+          <li>Quarterly strategy &amp; optimization</li>
+          <li>All API costs included</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Social Proof -->
+<section class="section proof-section">
+  <div class="container">
+    <div class="proof-content reveal">
+      <div class="section-label">Built Different</div>
+      <h2 class="proof-quote">Built by a founder who runs his entire business this way.</h2>
+      <div class="proof-stats">
+        <div class="reveal reveal-delay-1">
+          <div class="proof-stat-number">6</div>
+          <div class="proof-stat-label">Automated scrapers running daily</div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="proof-stat-number">40+</div>
+          <div class="proof-stat-label">Jobs identified every single day</div>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <div class="proof-stat-number">&lt;5min</div>
+          <div class="proof-stat-label">Contracts reviewed start to finish</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="faq-header reveal">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Common questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Do I need to be technical to use this?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">No. Axiom is configured and deployed for you. You interact with it the same way you'd talk to an employee &mdash; plain English. No coding, no terminal commands, no technical knowledge required.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What if something breaks?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Remote support is included with every plan. We monitor your system, push updates, and fix issues &mdash; usually before you even notice them. Executive and Command Center plans include proactive monitoring and scheduled maintenance.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What about API costs?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">All API costs are included in your monthly service fee. No surprise bills, no usage caps for normal business operations. You pay one predictable monthly price and we handle the rest.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Can I add more automations later?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Absolutely. Additional automations can be scoped and built at any time, typically ranging from $500 to $2,000 depending on complexity. Command Center clients get unlimited automations included.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How is my data kept secure?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Everything runs locally on YOUR machine, in your office. Your data never touches a third-party server you don't control. No cloud storage, no shared infrastructure. It's your hardware, your data, your network.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="section final-cta" id="contact">
+  <div class="final-cta-bg"></div>
+  <div class="container">
+    <div class="final-cta-content reveal">
+      <div class="section-label">Get Started</div>
+      <h2>Ready to hire your first <span class="gradient-text">AI employee</span>?</h2>
+      <p class="final-cta-sub">Book a 15-minute demo and see exactly how Axiom would work for your business.</p>
+      <div class="email-form">
+        <input type="email" placeholder="Enter your email" aria-label="Email address">
+        <button class="btn-primary" type="button">Book a Demo</button>
+      </div>
+      <p class="final-cta-or">or</p>
+      <a href="mailto:tyler@connecthealthstaff.com" class="btn-secondary">Email Us Directly</a>
+      <p class="final-cta-contact">Questions? Reach out at <a href="mailto:tyler@connecthealthstaff.com">tyler@connecthealthstaff.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>Axiom by ConnectHealth Staff LLC &middot; San Juan, PR &middot; &copy; 2026</p>
+  </div>
+</footer>
+
+<script>
+// Scroll-based nav styling
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// Mobile nav toggle
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
+// Close mobile nav on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -60px 0px'
+});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isActive = item.classList.contains('active');
+
+    // Close all
+    document.querySelectorAll('.faq-item.active').forEach(activeItem => {
+      activeItem.classList.remove('active');
+      activeItem.querySelector('.faq-answer').style.maxHeight = '0';
+    });
+
+    // Open clicked if wasn't active
+    if (!isActive) {
+      item.classList.add('active');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
