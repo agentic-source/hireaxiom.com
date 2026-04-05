@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Axiom — Your AI Employee Never Sleeps</title>
-<meta name="description" content="A pre-configured Mac Mini loaded with custom AI automation. Always on, always working, built for your business.">
+<title>Axiom -- Your AI Employee Never Sleeps</title>
+<meta name="description" content="A pre-configured Mac Mini that runs your business operations 24/7. Custom-built for healthcare staffing, legal, real estate, insurance, accounting, consulting, medical practice, and recruiting firms.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -113,6 +113,7 @@ body {
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 .reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
 
 /* ========== NAVIGATION ========== */
 .nav {
@@ -588,7 +589,8 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  font-size: 22px;
+  font-size: 20px;
+  color: var(--accent);
 }
 
 .problem-card h3 {
@@ -602,6 +604,202 @@ body {
   font-size: 14px;
   color: var(--text-secondary);
   line-height: 1.65;
+}
+
+/* ========== VERTICAL TABS SECTION ========== */
+.verticals-section {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.verticals-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 64px;
+}
+
+.tab-bar {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 48px;
+  padding: 6px;
+  background: rgba(14, 14, 24, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tab-btn.active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(0, 180, 255, 0.15), rgba(108, 92, 231, 0.15));
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.1), inset 0 0 0 1px rgba(0, 180, 255, 0.25);
+}
+
+.tab-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.tab-btn.active .tab-icon {
+  background: var(--gradient-1);
+  color: #fff;
+}
+
+.tab-btn:not(.active) .tab-icon {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+}
+
+/* Tab Content */
+.tab-panels {
+  position: relative;
+  min-height: 400px;
+}
+
+.tab-panel {
+  display: none;
+  animation: tabFadeIn 0.4s ease;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.automation-card {
+  padding: 28px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.automation-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-1);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.automation-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.automation-card:hover::before {
+  opacity: 1;
+}
+
+.automation-card-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 180, 255, 0.1), rgba(108, 92, 231, 0.1));
+  border: 1px solid rgba(0, 180, 255, 0.1);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.automation-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.automation-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* Mobile dropdown for tabs */
+.tab-dropdown {
+  display: none;
+  width: 100%;
+  padding: 16px 20px;
+  background: rgba(14, 14, 24, 0.8);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 32px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238a8a9a' d='M6 8.5L1 3.5h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.tab-dropdown option {
+  background: #0c0c14;
+  color: var(--text-primary);
 }
 
 /* ========== WHAT YOU GET ========== */
@@ -677,80 +875,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* ========== USE CASES ========== */
-.use-cases-section {
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.uc-header {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 72px;
-}
-
-.uc-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.uc-card {
-  padding: 36px 30px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.uc-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--gradient-1);
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.uc-card:hover {
-  border-color: var(--border-glow);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.uc-card:hover::before {
-  opacity: 1;
-}
-
-.uc-icon {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.uc-card h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: -0.01em;
-}
-
-.uc-card p {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.65;
 }
 
 /* ========== PRICING ========== */
@@ -872,6 +996,8 @@ body {
 }
 
 .pricing-features li {
+  position: relative;
+  padding-left: 32px;
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -883,13 +1009,15 @@ body {
 
 .pricing-features li::before {
   content: '';
+  position: absolute;
+  left: 0;
+  top: 1px;
   flex-shrink: 0;
   width: 20px;
   height: 20px;
   background: rgba(0, 180, 255, 0.1);
   border-radius: 50%;
   margin-top: 1px;
-  position: relative;
 }
 
 .pricing-features li::after {
@@ -900,21 +1028,6 @@ body {
   border-left: 2px solid var(--accent);
   border-bottom: 2px solid var(--accent);
   transform: rotate(-45deg);
-}
-
-/* Simpler check approach */
-.pricing-features li {
-  position: relative;
-  padding-left: 32px;
-}
-
-.pricing-features li::before {
-  position: absolute;
-  left: 0;
-  top: 1px;
-}
-
-.pricing-features li::after {
   left: 6px;
   top: 7px;
 }
@@ -956,27 +1069,70 @@ body {
 }
 
 .proof-content {
-  text-align: center;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.proof-quote {
-  font-size: clamp(24px, 4vw, 36px);
-  font-weight: 700;
-  line-height: 1.3;
+.proof-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.proof-story-text h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 800;
+  line-height: 1.2;
   letter-spacing: -0.02em;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
+}
+
+.proof-story-text p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.proof-story-visual {
+  position: relative;
+  padding: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+}
+
+.proof-story-visual blockquote {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--text-primary);
+  position: relative;
+  padding-left: 24px;
+  border-left: 3px solid;
+  border-image: var(--gradient-1) 1;
+}
+
+.proof-story-visual cite {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  font-style: normal;
+  color: var(--text-muted);
+  padding-left: 24px;
 }
 
 .proof-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
 }
 
 .proof-stat-number {
-  font-size: clamp(36px, 5vw, 56px);
+  font-size: clamp(32px, 4vw, 48px);
   font-weight: 900;
   background: var(--gradient-1);
   -webkit-background-clip: text;
@@ -987,9 +1143,10 @@ body {
 }
 
 .proof-stat-label {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
   font-weight: 500;
+  line-height: 1.5;
 }
 
 /* ========== FAQ ========== */
@@ -1151,12 +1308,40 @@ body {
 .footer {
   padding: 40px 0;
   border-top: 1px solid var(--border-subtle);
-  text-align: center;
 }
 
-.footer p {
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-left p {
   font-size: 13px;
   color: var(--text-muted);
+}
+
+.footer-left p:first-child {
+  margin-bottom: 4px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--text-secondary);
 }
 
 /* ========== RESPONSIVE ========== */
@@ -1213,7 +1398,16 @@ body {
     transform: translateY(-6px);
   }
 
-  .uc-grid {
+  .tab-content-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .proof-story {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .proof-stats {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -1254,16 +1448,30 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .uc-grid {
+  .tab-bar {
+    display: none;
+  }
+
+  .tab-dropdown {
+    display: block;
+  }
+
+  .tab-content-grid {
     grid-template-columns: 1fr;
   }
 
   .proof-stats {
-    gap: 32px;
+    gap: 24px;
   }
 
   .email-form {
     flex-direction: column;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
   }
 }
 
@@ -1278,7 +1486,7 @@ body {
 
   .proof-stats {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 20px;
   }
 
   .hero-actions {
@@ -1298,10 +1506,10 @@ body {
 <!-- Navigation -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">Desk<span>Pilot</span></a>
+    <a href="#" class="nav-logo">Axi<span>om</span></a>
     <ul class="nav-links" id="nav-links">
+      <li><a href="#verticals">Industries</a></li>
       <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#use-cases">Use Cases</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact" class="nav-cta">Book a Demo</a></li>
@@ -1324,13 +1532,13 @@ body {
       <div class="hero-text">
         <div class="hero-badge">Always On &middot; Always Working</div>
         <h1>Your <span class="gradient-text">AI Employee</span> Never Sleeps</h1>
-        <p class="hero-description">A pre-configured Mac Mini loaded with custom AI automation &mdash; always on, always working, built for your business.</p>
+        <p class="hero-description">A pre-configured Mac Mini that runs your business operations 24/7 &mdash; custom-built for your industry, managed for you.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn-primary">
-            Book a Demo
-            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+          <a href="#verticals" class="btn-primary">
+            See What It Can Do
+            <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 011.06 0L10 11.94l3.72-3.72a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.22 9.28a.75.75 0 010-1.06z"/></svg>
           </a>
-          <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+          <a href="#contact" class="btn-secondary">Book a Demo</a>
         </div>
       </div>
       <div class="hero-visual">
@@ -1367,24 +1575,477 @@ body {
     </div>
     <div class="problem-grid">
       <div class="problem-card reveal reveal-delay-1">
-        <div class="problem-icon">&#128104;&#8205;&#128187;</div>
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        </div>
         <h3>Can't hire a developer</h3>
         <p>AI engineers cost $150K+. You don't need a full-time hire. You need a system that works out of the box.</p>
       </div>
       <div class="problem-card reveal reveal-delay-2">
-        <div class="problem-icon">&#9729;&#65039;</div>
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
+        </div>
         <h3>Cloud AI is too generic</h3>
         <p>ChatGPT and off-the-shelf tools don't understand your business. They give generic answers to specific problems.</p>
       </div>
       <div class="problem-card reveal reveal-delay-3">
-        <div class="problem-icon">&#9203;</div>
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
         <h3>No time to learn</h3>
         <p>You're running a business. You don't have 6 months to master prompt engineering and build workflows from scratch.</p>
       </div>
       <div class="problem-card reveal reveal-delay-4">
-        <div class="problem-icon">&#128200;</div>
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
         <h3>Competitors are moving</h3>
         <p>While you're researching, your competition is already automating. Every week you wait is a week they get ahead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vertical Tabs -->
+<section class="section verticals-section" id="verticals">
+  <div class="container">
+    <div class="verticals-header reveal">
+      <div class="section-label">Built for Your Industry</div>
+      <h2 class="section-title">What your AI employee can do</h2>
+      <p class="section-subtitle mx-auto">Every Axiom is custom-configured with automations specific to your industry. Here's what that looks like.</p>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <select class="tab-dropdown" id="tab-dropdown" aria-label="Select industry">
+      <option value="healthcare">Healthcare Staffing</option>
+      <option value="legal">Legal</option>
+      <option value="realestate">Real Estate</option>
+      <option value="insurance">Insurance</option>
+      <option value="accounting">Accounting</option>
+      <option value="consulting">Consulting</option>
+      <option value="medical">Medical Practice</option>
+      <option value="recruiting">Recruiting</option>
+    </select>
+
+    <!-- Desktop tab bar -->
+    <div class="tab-bar reveal">
+      <button class="tab-btn active" data-tab="healthcare">
+        <span class="tab-icon">H</span>
+        Healthcare Staffing
+      </button>
+      <button class="tab-btn" data-tab="legal">
+        <span class="tab-icon">L</span>
+        Legal
+      </button>
+      <button class="tab-btn" data-tab="realestate">
+        <span class="tab-icon">R</span>
+        Real Estate
+      </button>
+      <button class="tab-btn" data-tab="insurance">
+        <span class="tab-icon">I</span>
+        Insurance
+      </button>
+      <button class="tab-btn" data-tab="accounting">
+        <span class="tab-icon">A</span>
+        Accounting
+      </button>
+      <button class="tab-btn" data-tab="consulting">
+        <span class="tab-icon">C</span>
+        Consulting
+      </button>
+      <button class="tab-btn" data-tab="medical">
+        <span class="tab-icon">M</span>
+        Medical Practice
+      </button>
+      <button class="tab-btn" data-tab="recruiting">
+        <span class="tab-icon">R</span>
+        Recruiting
+      </button>
+    </div>
+
+    <div class="tab-panels reveal">
+      <!-- Healthcare Staffing -->
+      <div class="tab-panel active" id="panel-healthcare">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Job Board Scraping</h4>
+            <p>Monitors 6+ job boards daily, identifies facilities, emails you new opportunities before competitors see them.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            </div>
+            <h4>Contract Review</h4>
+            <p>Upload a client contract, get a redlined version back with legal analysis in minutes.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h4>Market Intelligence</h4>
+            <p>Competitive bill rate analysis and salary benchmarking across all specialties.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h4>Credential Tracking</h4>
+            <p>Automated expiration alerts for licenses, certifications, and privileges.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h4>Client Reporting</h4>
+            <p>Auto-generates placement reports, fill-rate dashboards, and pipeline summaries.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h4>Candidate Outreach</h4>
+            <p>Personalized email sequences to passive candidates based on job matches.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal -->
+      <div class="tab-panel" id="panel-legal">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <h4>Document Drafting</h4>
+            <p>Generate contracts, briefs, and motions from templates and case context.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Case Research</h4>
+            <p>Automated legal research across statutes, case law, and regulatory databases.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h4>Deadline Management</h4>
+            <p>Tracks filing deadlines, statute of limitations, and court dates with automated alerts.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            </div>
+            <h4>Client Intake</h4>
+            <p>Processes intake forms, runs conflict checks, and drafts engagement letters.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h4>Billing Analysis</h4>
+            <p>Reviews time entries for billing optimization and identifies unbilled work.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4>Document Review</h4>
+            <p>Analyzes contracts and opposing counsel filings for risks and inconsistencies.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Estate -->
+      <div class="tab-panel" id="panel-realestate">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <h4>Market Analysis</h4>
+            <p>Daily comp scraping, price trend monitoring, and automated CMA generation.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <h4>Listing Generation</h4>
+            <p>Creates MLS descriptions, social media posts, and marketing materials from property details.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h4>Lead Follow-Up</h4>
+            <p>Automated drip campaigns personalized to buyer preferences and search history.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h4>Transaction Management</h4>
+            <p>Tracks contingencies, deadlines, and document completion across active deals.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h4>Investor Reports</h4>
+            <p>Auto-generates ROI analysis, cash flow projections, and portfolio summaries.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Competitive Intel</h4>
+            <p>Monitors competitor listings, price changes, and market positioning.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Insurance -->
+      <div class="tab-panel" id="panel-insurance">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            </div>
+            <h4>Quote Comparison</h4>
+            <p>Scrapes carrier portals and generates side-by-side comparisons for clients.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h4>Renewal Tracking</h4>
+            <p>Automated alerts for upcoming renewals with preparation checklists.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4>Policy Analysis</h4>
+            <p>Reviews policies for coverage gaps, exclusions, and optimization opportunities.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h4>Client Communications</h4>
+            <p>Personalized outreach for cross-sell opportunities and life event triggers.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4>Claims Support</h4>
+            <p>Drafts claim submissions, tracks status, and generates client updates.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h4>Compliance Monitoring</h4>
+            <p>Tracks regulatory changes and flags policies needing updates.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accounting -->
+      <div class="tab-panel" id="panel-accounting">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h4>Data Processing</h4>
+            <p>Automated categorization of transactions, receipt matching, and reconciliation.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4>Report Generation</h4>
+            <p>One-click financial statements, tax summaries, and client deliverables.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h4>Client Communications</h4>
+            <p>Automated document requests, deadline reminders, and status updates.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h4>Tax Deadline Tracking</h4>
+            <p>Monitors federal and state deadlines with preparation milestone alerts.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Audit Preparation</h4>
+            <p>Compiles documentation, identifies discrepancies, and drafts audit responses.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h4>Advisory Insights</h4>
+            <p>Analyzes client financials and generates proactive advisory recommendations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consulting -->
+      <div class="tab-panel" id="panel-consulting">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Research Automation</h4>
+            <p>Deep industry research, competitor analysis, and market sizing on demand.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <h4>Proposal Generation</h4>
+            <p>Creates tailored proposals from templates, past work, and client context.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <h4>Deliverable Drafting</h4>
+            <p>Generates report frameworks, analysis templates, and presentation outlines.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h4>Project Tracking</h4>
+            <p>Monitors milestones, budgets, and deliverable deadlines across engagements.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h4>Client Reporting</h4>
+            <p>Automated status updates, progress dashboards, and executive summaries.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <h4>Knowledge Management</h4>
+            <p>Indexes past projects and extracts reusable frameworks and insights.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Medical Practice -->
+      <div class="tab-panel" id="panel-medical">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h4>Scheduling Optimization</h4>
+            <p>Analyzes appointment patterns, reduces no-shows, and fills cancellation gaps automatically.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h4>Patient Communications</h4>
+            <p>Automated appointment reminders, follow-up messages, and wellness check-ins.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h4>Billing Analysis</h4>
+            <p>Reviews claims for coding accuracy, identifies underbilling, and tracks reimbursement rates.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            </div>
+            <h4>Referral Tracking</h4>
+            <p>Monitors incoming and outgoing referrals, tracks conversion, and automates follow-up with referring providers.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h4>Practice Analytics</h4>
+            <p>Generates daily dashboards on patient volume, revenue per visit, and payer mix.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h4>Compliance Monitoring</h4>
+            <p>Tracks staff certifications, OSHA requirements, and regulatory deadlines.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recruiting -->
+      <div class="tab-panel" id="panel-recruiting">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Job Board Scraping</h4>
+            <p>Monitors major job boards daily, extracts new openings, and identifies opportunities matching your focus areas.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h4>Candidate Matching</h4>
+            <p>Scores and ranks candidates against open roles using skills, experience, and preference matching.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h4>Outreach Automation</h4>
+            <p>Personalized email and message sequences to passive candidates based on role fit.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h4>Client Reporting</h4>
+            <p>Auto-generates pipeline reports, placement stats, and activity summaries for clients.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h4>Pipeline Analytics</h4>
+            <p>Tracks sourcing channels, time-to-fill, and conversion rates across all active searches.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4>Intake Automation</h4>
+            <p>Processes new job orders, extracts requirements, and creates searchable candidate criteria.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1402,69 +2063,26 @@ body {
       <div class="wyg-card">
         <div class="wyg-card-number">01</div>
         <h3>Hardware</h3>
-        <p>Apple Mac Mini (M4 or M4 Pro) pre-configured and ready to deploy. Compact, silent, powerful.</p>
+        <p>Mac Mini M4 &mdash; always-on, sits on your desk. Compact, silent, powerful.</p>
       </div>
       <div class="wyg-card">
         <div class="wyg-card-number">02</div>
         <h3>AI Engine</h3>
-        <p>Claude Code with custom agents, automation scripts, and intelligent task orchestration.</p>
+        <p>Claude Code with your business context pre-loaded and ready to execute.</p>
       </div>
       <div class="wyg-card">
         <div class="wyg-card-number">03</div>
         <h3>Custom Automations</h3>
-        <p>Industry-specific tools built for your workflows. Scrapers, analyzers, generators, monitors.</p>
+        <p>Built for YOUR specific workflows. Not templates &mdash; real automation tailored to how you operate.</p>
       </div>
       <div class="wyg-card">
         <div class="wyg-card-number">04</div>
         <h3>Ongoing Support</h3>
-        <p>Remote monitoring, maintenance, updates, and new automation development as your needs evolve.</p>
+        <p>We monitor, maintain, and continuously improve your system as your business evolves.</p>
       </div>
     </div>
     <div class="wyg-callout reveal">
       <p>Not just a computer. <span>A configured, trained, always-on AI system built for YOUR business.</span></p>
-    </div>
-  </div>
-</section>
-
-<!-- Use Cases -->
-<section class="section use-cases-section" id="use-cases">
-  <div class="container">
-    <div class="uc-header reveal">
-      <div class="section-label">Use Cases</div>
-      <h2 class="section-title">What your AI employee can do</h2>
-      <p class="section-subtitle mx-auto">Real automations running in production today &mdash; not hypotheticals.</p>
-    </div>
-    <div class="uc-grid">
-      <div class="uc-card reveal reveal-delay-1">
-        <div class="uc-icon">&#127973;</div>
-        <h3>Healthcare Staffing</h3>
-        <p>Auto-scrapes 6 job boards daily, identifies target facilities, compiles and emails a digest of new opportunities by morning.</p>
-      </div>
-      <div class="uc-card reveal reveal-delay-2">
-        <div class="uc-icon">&#128221;</div>
-        <h3>Contract Review</h3>
-        <p>Upload a contract, get a redlined version with clause-by-clause legal analysis, risk flags, and suggested modifications.</p>
-      </div>
-      <div class="uc-card reveal reveal-delay-3">
-        <div class="uc-icon">&#128202;</div>
-        <h3>Market Intelligence</h3>
-        <p>Competitive rate analysis, salary benchmarking across regions, and trend reporting pulled from live data sources.</p>
-      </div>
-      <div class="uc-card reveal reveal-delay-1">
-        <div class="uc-icon">&#128196;</div>
-        <h3>Document Generation</h3>
-        <p>Sales pages, email sequences, proposals, and reports generated from templates and your business data.</p>
-      </div>
-      <div class="uc-card reveal reveal-delay-2">
-        <div class="uc-icon">&#128200;</div>
-        <h3>Data Analysis</h3>
-        <p>Spreadsheets, CSV processing, financial modeling, and custom reporting &mdash; processed automatically on schedule.</p>
-      </div>
-      <div class="uc-card reveal reveal-delay-3">
-        <div class="uc-icon">&#9993;</div>
-        <h3>Email Automation</h3>
-        <p>Drip sequences, follow-up campaigns, outreach emails, and response templates built and managed automatically.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1544,19 +2162,32 @@ body {
   <div class="container">
     <div class="proof-content reveal">
       <div class="section-label">Built Different</div>
-      <h2 class="proof-quote">Built by a founder who runs his entire business this way.</h2>
-      <div class="proof-stats">
+      <div class="proof-story">
+        <div class="proof-story-text">
+          <h2>Built by a business owner, for business owners.</h2>
+          <p>I run a healthcare staffing agency. I built Axiom to automate my own operations &mdash; scraping job boards, reviewing contracts, analyzing markets. It worked so well, I turned it into a product.</p>
+        </div>
+        <div class="proof-story-visual">
+          <blockquote>This isn't a tech company selling to industries it doesn't understand. This is a business owner who solved his own problems, then made the solution available to you.</blockquote>
+          <cite>&mdash; Tyler Meeks, Founder</cite>
+        </div>
+      </div>
+      <div class="proof-stats reveal">
         <div class="reveal reveal-delay-1">
           <div class="proof-stat-number">6</div>
-          <div class="proof-stat-label">Automated scrapers running daily</div>
+          <div class="proof-stat-label">Automated workflows running daily</div>
         </div>
         <div class="reveal reveal-delay-2">
           <div class="proof-stat-number">40+</div>
-          <div class="proof-stat-label">Jobs identified every single day</div>
+          <div class="proof-stat-label">Daily insights delivered</div>
         </div>
         <div class="reveal reveal-delay-3">
           <div class="proof-stat-number">&lt;5min</div>
-          <div class="proof-stat-label">Contracts reviewed start to finish</div>
+          <div class="proof-stat-label">Contracts reviewed</div>
+        </div>
+        <div class="reveal reveal-delay-4">
+          <div class="proof-stat-number">0</div>
+          <div class="proof-stat-label">Technical knowledge required</div>
         </div>
       </div>
     </div>
@@ -1573,29 +2204,38 @@ body {
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-question">
-          <span>Do I need to be technical to use this?</span>
+          <span>Do I need to be technical?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">No. Axiom is configured and deployed for you. You interact with it the same way you'd talk to an employee &mdash; plain English. No coding, no terminal commands, no technical knowledge required.</div>
+          <div class="faq-answer-inner">No. You talk to it like you'd talk to an employee. Plain English, no coding, no terminal commands. We handle all the technical setup and maintenance.</div>
         </div>
       </div>
       <div class="faq-item">
         <button class="faq-question">
-          <span>What if something breaks?</span>
+          <span>What industry are you in?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Remote support is included with every plan. We monitor your system, push updates, and fix issues &mdash; usually before you even notice them. Executive and Command Center plans include proactive monitoring and scheduled maintenance.</div>
+          <div class="faq-answer-inner">We serve healthcare staffing, legal, real estate, insurance, accounting, consulting, medical practice, and recruiting firms. Each Axiom is custom-configured for your industry with automations specific to how you operate.</div>
         </div>
       </div>
       <div class="faq-item">
         <button class="faq-question">
-          <span>What about API costs?</span>
+          <span>What happens if something breaks?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">All API costs are included in your monthly service fee. No surprise bills, no usage caps for normal business operations. You pay one predictable monthly price and we handle the rest.</div>
+          <div class="faq-answer-inner">Remote support is included in all plans. We monitor your system proactively and push updates and fixes &mdash; usually before you even notice an issue.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What about AI costs?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Included in your monthly plan. No surprise bills, no usage caps for normal business operations. You pay one predictable monthly price and we handle the rest.</div>
         </div>
       </div>
       <div class="faq-item">
@@ -1604,16 +2244,25 @@ body {
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Absolutely. Additional automations can be scoped and built at any time, typically ranging from $500 to $2,000 depending on complexity. Command Center clients get unlimited automations included.</div>
+          <div class="faq-answer-inner">Yes. Additional automations are $500&ndash;$2,000 each depending on complexity. Most clients add 2&ndash;3 new automations within the first quarter as they discover new use cases.</div>
         </div>
       </div>
       <div class="faq-item">
         <button class="faq-question">
-          <span>How is my data kept secure?</span>
+          <span>Is my data secure?</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Everything runs locally on YOUR machine, in your office. Your data never touches a third-party server you don't control. No cloud storage, no shared infrastructure. It's your hardware, your data, your network.</div>
+          <div class="faq-answer-inner">Everything runs locally on YOUR machine. Your data never touches our servers. The Mac Mini sits on your desk, behind your firewall, under your control.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How long does setup take?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">1&ndash;2 weeks from order to delivery, including custom configuration for your industry, installation of your specific automations, and a hands-on onboarding call.</div>
         </div>
       </div>
     </div>
@@ -1625,61 +2274,98 @@ body {
   <div class="final-cta-bg"></div>
   <div class="container">
     <div class="final-cta-content reveal">
-      <div class="section-label">Get Started</div>
       <h2>Ready to hire your first <span class="gradient-text">AI employee</span>?</h2>
-      <p class="final-cta-sub">Book a 15-minute demo and see exactly how Axiom would work for your business.</p>
-      <div class="email-form">
-        <input type="email" placeholder="Enter your email" aria-label="Email address">
-        <button class="btn-primary" type="button">Book a Demo</button>
+      <p class="final-cta-sub">Tell us about your business. We'll show you exactly what Axiom can automate for you.</p>
+      <div class="hero-actions" style="justify-content: center; margin-bottom: 32px;">
+        <a href="mailto:hello@hireaxiom.com?subject=Book a Demo" class="btn-primary">
+          Book a 15-Minute Demo
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+        </a>
       </div>
-      <p class="final-cta-or">or</p>
-      <a href="mailto:tyler@connecthealthstaff.com" class="btn-secondary">Email Us Directly</a>
-      <p class="final-cta-contact">Questions? Reach out at <a href="mailto:tyler@connecthealthstaff.com">tyler@connecthealthstaff.com</a></p>
+      <p class="final-cta-or">or leave your email and we'll reach out</p>
+      <form class="email-form" onsubmit="return false;">
+        <input type="email" placeholder="you@company.com" aria-label="Email address">
+        <button type="submit" class="btn-primary" style="padding: 16px 28px; white-space: nowrap;">Get in Touch</button>
+      </form>
+      <p class="final-cta-contact">Or email us directly at <a href="mailto:hello@hireaxiom.com">hello@hireaxiom.com</a></p>
     </div>
   </div>
 </section>
 
 <!-- Footer -->
 <footer class="footer">
-  <div class="container">
-    <p>Axiom by ConnectHealth Staff LLC &middot; San Juan, PR &middot; &copy; 2026</p>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <p>Axiom by ConnectHealth Staff LLC</p>
+      <p>San Juan, PR &middot; &copy; 2026</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
   </div>
 </footer>
 
 <script>
-// Scroll-based nav styling
+// ========== NAVIGATION ==========
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
-
-// Mobile nav toggle
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
 navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('open');
 });
 
 // Close mobile nav on link click
 navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+  });
 });
 
-// Intersection Observer for scroll animations
-const observer = new IntersectionObserver((entries) => {
+// ========== SCROLL REVEAL ==========
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, {
-  threshold: 0.1,
-  rootMargin: '0px 0px -60px 0px'
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  revealObserver.observe(el);
 });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// ========== VERTICAL TABS ==========
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+const tabDropdown = document.getElementById('tab-dropdown');
 
-// FAQ accordion
+function switchTab(tabId) {
+  tabBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tabId);
+  });
+  tabPanels.forEach(panel => {
+    panel.classList.toggle('active', panel.id === 'panel-' + tabId);
+  });
+  tabDropdown.value = tabId;
+}
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    switchTab(btn.dataset.tab);
+  });
+});
+
+tabDropdown.addEventListener('change', (e) => {
+  switchTab(e.target.value);
+});
+
+// ========== FAQ ACCORDION ==========
 document.querySelectorAll('.faq-question').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.parentElement;
@@ -1687,30 +2373,18 @@ document.querySelectorAll('.faq-question').forEach(btn => {
     const isActive = item.classList.contains('active');
 
     // Close all
-    document.querySelectorAll('.faq-item.active').forEach(activeItem => {
-      activeItem.classList.remove('active');
-      activeItem.querySelector('.faq-answer').style.maxHeight = '0';
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('active');
+      i.querySelector('.faq-answer').style.maxHeight = null;
     });
 
-    // Open clicked if wasn't active
+    // Open clicked if was closed
     if (!isActive) {
       item.classList.add('active');
       answer.style.maxHeight = answer.scrollHeight + 'px';
     }
   });
 });
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
 </script>
-
 </body>
 </html>
