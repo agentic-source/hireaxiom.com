@@ -877,6 +877,175 @@ body {
   background-clip: text;
 }
 
+/* ========== HOW IT WORKS ========== */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 64px;
+  position: relative;
+}
+
+.steps-grid::before {
+  content: '';
+  position: absolute;
+  top: 48px;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent);
+  opacity: 0.3;
+}
+
+.step-card {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.step-number {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  font-size: 36px;
+  font-weight: 800;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.step-number::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: var(--gradient-1);
+  z-index: -1;
+  opacity: 0.15;
+}
+
+.step-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.step-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* ========== VIDEO PLACEHOLDER ========== */
+.video-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.video-wrapper:hover {
+  border-color: var(--border-glow);
+  box-shadow: 0 0 40px rgba(0, 180, 255, 0.1);
+}
+
+.video-play {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--gradient-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  box-shadow: 0 8px 40px rgba(0, 180, 255, 0.3);
+}
+
+.video-wrapper:hover .video-play {
+  transform: scale(1.1);
+}
+
+.video-play svg {
+  width: 32px;
+  height: 32px;
+  margin-left: 4px;
+}
+
+.video-label {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ========== GUARANTEE ========== */
+.guarantee-banner {
+  max-width: 760px;
+  margin: 48px auto 0;
+  padding: 32px 40px;
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 212, 170, 0.2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.guarantee-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(0, 212, 170, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00d4aa;
+}
+
+.guarantee-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.guarantee-text h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #00d4aa;
+}
+
+.guarantee-text p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
 /* ========== PRICING ========== */
 .pricing-header {
   text-align: center;
@@ -1382,6 +1551,21 @@ body {
 }
 
 /* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin: 48px auto 0;
+  }
+  .steps-grid::before { display: none; }
+
+  .guarantee-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 24px;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero-content {
     grid-template-columns: 1fr;
@@ -2336,6 +2520,51 @@ body {
   </div>
 </section>
 
+<!-- How It Works -->
+<section class="section" id="how-it-works-steps">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Three steps. That's it.</h2>
+      <p class="section-subtitle mx-auto">No learning curve, no setup headaches. We handle everything.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-number">1</div>
+        <h3>Book a Demo</h3>
+        <p>Tell us about your work, your business, or your daily routine. We'll show you exactly what Axiom can automate for you.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-number">2</div>
+        <h3>We Configure It</h3>
+        <p>We set up your Mac Mini with custom automations tailored to your specific workflows. Everything pre-loaded, pre-tested, ready to go.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-number">3</div>
+        <h3>Plug In &amp; Go</h3>
+        <p>It arrives at your door. Plug it in, connect to Wi-Fi, and your AI employee starts working. We walk you through everything on a live call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <div class="section-label">See It In Action</div>
+      <h2 class="section-title">Watch Axiom work</h2>
+      <p class="section-subtitle mx-auto" style="margin-bottom: 48px;">A 60-second look at what your AI employee does every day.</p>
+    </div>
+    <div class="video-wrapper reveal" onclick="this.innerHTML='<p style=\'color: var(--text-muted); font-size: 16px;\'>Demo video coming soon. <a href=#contact style=\'color: var(--accent);\'>Book a live demo</a> to see it in action.</p>'">
+      <div class="video-play">
+        <svg viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+      <div class="video-label">Watch the demo</div>
+    </div>
+  </div>
+</section>
+
 <!-- Pricing -->
 <section class="section" id="pricing">
   <div class="container">
@@ -2419,6 +2648,15 @@ body {
           <li>Generous API usage included</li>
         </ul>
         <a href="#contact" class="btn-outline">Contact Sales</a>
+      </div>
+    </div>
+    <div class="guarantee-banner reveal">
+      <div class="guarantee-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <div class="guarantee-text">
+        <h4>30-Day Money-Back Guarantee</h4>
+        <p>Try Axiom risk-free. If it doesn't save you meaningful time in the first 30 days, we'll refund your setup fee in full &mdash; no questions asked. You keep the Mac Mini.</p>
       </div>
     </div>
   </div>
