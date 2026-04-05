@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Axiom -- Your AI Employee Never Sleeps</title>
-<meta name="description" content="A pre-configured Mac Mini that runs your business operations 24/7. Custom-built for healthcare staffing, legal, real estate, insurance, accounting, consulting, medical practice, and recruiting firms.">
+<meta name="description" content="A pre-configured Mac Mini AI assistant that works for you 24/7. Custom-built for businesses and individuals — professionals, parents, students, and creators.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -628,7 +628,7 @@ body {
   background: rgba(14, 14, 24, 0.8);
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
-  max-width: 1100px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   overflow-x: auto;
@@ -886,8 +886,8 @@ body {
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   align-items: start;
 }
 
@@ -1608,7 +1608,7 @@ body {
   <div class="container">
     <div class="problem-header reveal">
       <div class="section-label">The Problem</div>
-      <h2>You know AI can transform your business. You just don't have time to figure it out.</h2>
+      <h2>You know AI could change everything. You just don't have time to figure it out.</h2>
     </div>
     <div class="problem-grid">
       <div class="problem-card reveal reveal-delay-1">
@@ -1630,7 +1630,7 @@ body {
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
         <h3>No time to learn</h3>
-        <p>You're running a business. You don't have 6 months to master prompt engineering and build workflows from scratch.</p>
+        <p>You're busy. You don't have 6 months to master prompt engineering and build workflows from scratch.</p>
       </div>
       <div class="problem-card reveal reveal-delay-4">
         <div class="problem-icon">
@@ -1647,9 +1647,9 @@ body {
 <section class="section verticals-section" id="verticals">
   <div class="container">
     <div class="verticals-header reveal">
-      <div class="section-label">Built for Your Industry</div>
+      <div class="section-label">Built for You</div>
       <h2 class="section-title">What your AI employee can do</h2>
-      <p class="section-subtitle mx-auto">Every Axiom is custom-configured with automations specific to your industry. Here's what that looks like.</p>
+      <p class="section-subtitle mx-auto">Every Axiom is custom-configured with automations for your work, your life, or both. Here's what that looks like.</p>
     </div>
 
     <!-- Mobile dropdown -->
@@ -1662,6 +1662,10 @@ body {
       <option value="consulting">Consulting</option>
       <option value="medical">Medical Practice</option>
       <option value="recruiting">Recruiting</option>
+      <option value="professionals">Busy Professionals</option>
+      <option value="parents">Parents &amp; Home Managers</option>
+      <option value="students">Students</option>
+      <option value="creators">Content Creators</option>
     </select>
 
     <!-- Desktop tab bar -->
@@ -1697,6 +1701,22 @@ body {
       <button class="tab-btn" data-tab="recruiting">
         <span class="tab-icon">R</span>
         Recruiting
+      </button>
+      <button class="tab-btn" data-tab="professionals">
+        <span class="tab-icon">P</span>
+        Professionals
+      </button>
+      <button class="tab-btn" data-tab="parents">
+        <span class="tab-icon">H</span>
+        Home &amp; Family
+      </button>
+      <button class="tab-btn" data-tab="students">
+        <span class="tab-icon">S</span>
+        Students
+      </button>
+      <button class="tab-btn" data-tab="creators">
+        <span class="tab-icon">C</span>
+        Creators
       </button>
     </div>
 
@@ -2084,6 +2104,198 @@ body {
           </div>
         </div>
       </div>
+
+      <!-- Busy Professionals -->
+      <div class="tab-panel" id="panel-professionals">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h4>Email Drafting</h4>
+            <p>Composes professional emails, follow-ups, and responses in your voice. Just tell it what to say.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h4>Calendar Management</h4>
+            <p>Organizes your schedule, flags conflicts, prepares agendas, and sends reminders so nothing falls through the cracks.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Research Assistant</h4>
+            <p>Deep-dives into any topic &mdash; market trends, competitors, travel plans, purchase decisions &mdash; and delivers organized summaries.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h4>Expense Tracking</h4>
+            <p>Categorizes spending, flags anomalies, generates reports, and helps you stay on top of budgets and reimbursements.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4>Meeting Prep</h4>
+            <p>Pulls background on attendees, drafts talking points, and creates one-pagers so you walk in prepared every time.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h4>Goal Tracking</h4>
+            <p>Monitors your personal and professional goals, sends progress updates, and suggests adjustments to keep you on track.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parents & Home Managers -->
+      <div class="tab-panel" id="panel-parents">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h4>Family Scheduling</h4>
+            <p>Manages everyone's activities, appointments, and events in one place. Sends reminders so nothing gets missed.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+            </div>
+            <h4>Meal Planning</h4>
+            <p>Generates weekly meal plans based on your preferences, creates grocery lists, and finds recipes that fit your schedule.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h4>Budget Management</h4>
+            <p>Tracks household spending, flags bills coming due, compares prices, and helps you save on recurring expenses.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>School Research</h4>
+            <p>Researches schools, programs, tutors, and extracurriculars. Compares options and organizes application deadlines.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h4>Email &amp; Correspondence</h4>
+            <p>Drafts emails to teachers, coaches, doctors, and vendors. Handles the back-and-forth so you don't have to.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h4>Home Organization</h4>
+            <p>Tracks home maintenance schedules, warranty info, contractor contacts, and seasonal to-do lists.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Students -->
+      <div class="tab-panel" id="panel-students">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>Research Assistant</h4>
+            <p>Finds and summarizes academic sources, compares viewpoints, and organizes citations for any topic.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h4>Study Guide Builder</h4>
+            <p>Turns lecture notes and textbook chapters into flashcards, summaries, and practice questions.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4>Paper Drafting</h4>
+            <p>Helps outline, draft, and revise essays and reports. Checks structure, argument flow, and proper formatting.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h4>Deadline Tracking</h4>
+            <p>Tracks assignments, exams, and application deadlines across all your courses. Sends reminders before things are due.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h4>Course Planning</h4>
+            <p>Maps out semester schedules, prerequisite chains, and credit requirements to keep you on track to graduate.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h4>Budget &amp; Aid Tracking</h4>
+            <p>Monitors scholarships, financial aid deadlines, and student budget. Finds opportunities you might be missing.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Creators -->
+      <div class="tab-panel" id="panel-creators">
+        <div class="tab-content-grid">
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h4>Script Writing</h4>
+            <p>Generates video scripts, podcast outlines, and blog drafts in your style. Adapts to your tone and audience.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h4>Content Calendar</h4>
+            <p>Plans your posting schedule across platforms, tracks what's published, and suggests optimal timing.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h4>Analytics Tracking</h4>
+            <p>Monitors views, engagement, and growth trends across your channels. Identifies what's working and what's not.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h4>SEO &amp; Discovery</h4>
+            <p>Researches trending topics, keywords, and hashtags in your niche. Optimizes titles and descriptions for reach.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h4>Community Management</h4>
+            <p>Drafts replies to comments and DMs, flags important messages, and helps you stay engaged without burning out.</p>
+          </div>
+          <div class="automation-card">
+            <div class="automation-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <h4>Sponsorship Outreach</h4>
+            <p>Researches potential sponsors, drafts pitch emails, and tracks conversations so you can monetize your audience.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2133,9 +2345,27 @@ body {
       <p class="section-subtitle mx-auto">One-time hardware + setup fee. Monthly service includes support, monitoring, and all API costs.</p>
     </div>
     <div class="pricing-grid">
-      <!-- Tier 1 -->
+      <!-- Personal -->
       <div class="pricing-card reveal reveal-delay-1">
-        <div class="pricing-tier">Tier 1</div>
+        <div class="pricing-tier">Personal</div>
+        <div class="pricing-name">The Assistant</div>
+        <div class="pricing-amount">
+          <span class="currency">$</span><span class="price">2,000</span>
+          <span class="one-time">one-time</span>
+        </div>
+        <div class="pricing-recurring">+ <span>$300</span>/month</div>
+        <ul class="pricing-features">
+          <li>Mac Mini M4 &mdash; configured &amp; shipped</li>
+          <li>Claude Code installed and configured</li>
+          <li>3 personal automations</li>
+          <li>Email support</li>
+          <li>All API costs included</li>
+        </ul>
+        <a href="#contact" class="btn-outline">Get Started</a>
+      </div>
+      <!-- Tier 1 -->
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-tier">Business</div>
         <div class="pricing-name">The Associate</div>
         <div class="pricing-amount">
           <span class="currency">$</span><span class="price">2,999</span>
@@ -2145,16 +2375,16 @@ body {
         <ul class="pricing-features">
           <li>Mac Mini M4 &mdash; configured &amp; shipped</li>
           <li>Claude Code installed and configured</li>
-          <li>3 custom automations</li>
+          <li>5 custom automations</li>
           <li>Email support</li>
           <li>All API costs included</li>
         </ul>
         <a href="#contact" class="btn-outline">Get Started</a>
       </div>
       <!-- Tier 2 -->
-      <div class="pricing-card featured reveal reveal-delay-2">
+      <div class="pricing-card featured reveal reveal-delay-3">
         <div class="pricing-badge">Most Popular</div>
-        <div class="pricing-tier">Tier 2</div>
+        <div class="pricing-tier">Business Pro</div>
         <div class="pricing-name">The Executive</div>
         <div class="pricing-amount">
           <span class="currency">$</span><span class="price">4,999</span>
@@ -2172,8 +2402,8 @@ body {
         <a href="#contact" class="btn-primary">Book a Demo</a>
       </div>
       <!-- Tier 3 -->
-      <div class="pricing-card reveal reveal-delay-3">
-        <div class="pricing-tier">Tier 3</div>
+      <div class="pricing-card reveal reveal-delay-4">
+        <div class="pricing-tier">Enterprise</div>
         <div class="pricing-name">The Command Center</div>
         <div class="pricing-amount">
           <span class="currency">$</span><span class="price">9,999</span>
@@ -2201,7 +2431,7 @@ body {
       <div class="section-label">Built Different</div>
       <div class="proof-story">
         <div class="proof-story-text">
-          <h2>Built by a business owner, for business owners.</h2>
+          <h2>Built by a business owner, for people who want more done in less time.</h2>
           <p>I run a healthcare staffing agency. I built Axiom to automate my own operations &mdash; scraping job boards, reviewing contracts, analyzing markets. It worked so well, I turned it into a product.</p>
         </div>
         <div class="proof-story-visual">
@@ -2254,7 +2484,7 @@ body {
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">We serve healthcare staffing, legal, real estate, insurance, accounting, consulting, medical practice, and recruiting firms. Each Axiom is custom-configured for your industry with automations specific to how you operate.</div>
+          <div class="faq-answer-inner">We serve businesses across healthcare staffing, legal, real estate, insurance, accounting, consulting, medical practice, and recruiting &mdash; plus individuals like busy professionals, parents, students, and content creators. Each Axiom is custom-configured for your specific needs.</div>
         </div>
       </div>
       <div class="faq-item">
@@ -2316,7 +2546,7 @@ body {
       <form class="demo-form" id="demo-form" action="https://formsubmit.co/hello@hireaxiom.com" method="POST">
         <input type="hidden" name="_subject" value="New Axiom Demo Request">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="http://hireaxiom.com/#contact">
+        <input type="hidden" name="_next" value="http://hireaxiom.com/thanks.html">
         <input type="hidden" name="_template" value="table">
         <div class="form-row">
           <input type="text" name="name" placeholder="Your name" aria-label="Name" required>
@@ -2334,6 +2564,10 @@ body {
             <option value="Consulting">Consulting</option>
             <option value="Medical Practice">Medical Practice</option>
             <option value="Recruiting">Recruiting</option>
+            <option value="Personal - Professional">Personal - Busy Professional</option>
+            <option value="Personal - Parent/Home">Personal - Parent / Home Manager</option>
+            <option value="Personal - Student">Personal - Student</option>
+            <option value="Personal - Creator">Personal - Content Creator</option>
             <option value="Other">Other</option>
           </select>
         </div>

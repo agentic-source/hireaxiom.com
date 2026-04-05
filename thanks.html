@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thanks! — Axiom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #06060b;
+  color: #e8e8ed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+.checkmark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00b4ff, #6c5ce7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 32px;
+  animation: pop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes pop {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.checkmark svg { width: 40px; height: 40px; }
+h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+p {
+  font-size: 18px;
+  color: #8a8a9a;
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+a {
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #00b4ff, #6c5ce7);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 180, 255, 0.3);
+}
+</style>
+</head>
+<body>
+<div>
+  <div class="checkmark">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  </div>
+  <h1>You're on the list!</h1>
+  <p>Thanks for your interest in Axiom. We'll reach out within 24 hours to schedule your demo.</p>
+  <a href="/">Back to Axiom</a>
+</div>
+</body>
+</html>
