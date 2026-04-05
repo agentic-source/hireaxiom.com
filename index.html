@@ -1254,16 +1254,25 @@ body {
   line-height: 1.7;
 }
 
-.email-form {
-  display: flex;
-  gap: 12px;
-  max-width: 480px;
+.demo-form {
+  max-width: 520px;
   margin: 0 auto 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
 }
 
-.email-form input {
-  flex: 1;
-  padding: 16px 20px;
+.demo-form .form-row {
+  display: flex;
+  gap: 14px;
+}
+
+.demo-form input,
+.demo-form select,
+.demo-form textarea {
+  width: 100%;
+  padding: 14px 18px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-sm);
@@ -1274,13 +1283,41 @@ body {
   transition: border-color 0.3s;
 }
 
-.email-form input::placeholder {
+.demo-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238a8a9a' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.demo-form select option {
+  background: #1a1a2e;
+  color: var(--text-primary);
+}
+
+.demo-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.demo-form input::placeholder,
+.demo-form textarea::placeholder {
   color: var(--text-muted);
 }
 
-.email-form input:focus {
+.demo-form input:focus,
+.demo-form select:focus,
+.demo-form textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(0, 180, 255, 0.1);
+}
+
+.demo-form button[type="submit"] {
+  align-self: center;
+  margin-top: 8px;
 }
 
 .final-cta-or {
@@ -1464,7 +1501,7 @@ body {
     gap: 24px;
   }
 
-  .email-form {
+  .demo-form .form-row {
     flex-direction: column;
   }
 
@@ -2276,20 +2313,35 @@ body {
     <div class="final-cta-content reveal">
       <h2>Ready to hire your first <span class="gradient-text">AI employee</span>?</h2>
       <p class="final-cta-sub">Tell us about your business. We'll show you exactly what Axiom can automate for you.</p>
-      <div class="hero-actions" style="justify-content: center; margin-bottom: 32px;">
-        <a href="mailto:hello@hireaxiom.com?subject=Book a Demo" class="btn-primary">
-          Book a 15-Minute Demo
-          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
-        </a>
-      </div>
-      <p class="final-cta-or">or leave your email and we'll reach out</p>
-      <form class="email-form" id="contact-form" action="https://formsubmit.co/hello@hireaxiom.com" method="POST">
+      <form class="demo-form" id="demo-form" action="https://formsubmit.co/hello@hireaxiom.com" method="POST">
         <input type="hidden" name="_subject" value="New Axiom Demo Request">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="http://hireaxiom.com/#contact">
         <input type="hidden" name="_template" value="table">
-        <input type="email" name="email" id="contact-email" placeholder="you@company.com" aria-label="Email address" required>
-        <button type="submit" class="btn-primary" style="padding: 16px 28px; white-space: nowrap;">Get in Touch</button>
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Your name" aria-label="Name" required>
+          <input type="email" name="email" placeholder="you@company.com" aria-label="Email" required>
+        </div>
+        <div class="form-row">
+          <input type="text" name="company" placeholder="Company name" aria-label="Company">
+          <select name="industry" aria-label="Industry">
+            <option value="" disabled selected>Select your industry</option>
+            <option value="Healthcare Staffing">Healthcare Staffing</option>
+            <option value="Legal">Legal</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Insurance">Insurance</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Consulting">Consulting</option>
+            <option value="Medical Practice">Medical Practice</option>
+            <option value="Recruiting">Recruiting</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <textarea name="message" placeholder="Tell us a bit about your business and what you'd like to automate (optional)" aria-label="Message"></textarea>
+        <button type="submit" class="btn-primary" style="padding: 16px 32px;">
+          Book a 15-Minute Demo
+          <svg viewBox="0 0 20 20" fill="currentColor" style="width:18px;height:18px;margin-left:6px;"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"/></svg>
+        </button>
       </form>
       <p class="final-cta-contact">Or email us directly at <a href="mailto:hello@hireaxiom.com">hello@hireaxiom.com</a></p>
     </div>
