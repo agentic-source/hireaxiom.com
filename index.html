@@ -2283,8 +2283,8 @@ body {
         </a>
       </div>
       <p class="final-cta-or">or leave your email and we'll reach out</p>
-      <form class="email-form" onsubmit="return false;">
-        <input type="email" placeholder="you@company.com" aria-label="Email address">
+      <form class="email-form" id="contact-form" onsubmit="handleContactForm(event)">
+        <input type="email" id="contact-email" placeholder="you@company.com" aria-label="Email address" required>
         <button type="submit" class="btn-primary" style="padding: 16px 28px; white-space: nowrap;">Get in Touch</button>
       </form>
       <p class="final-cta-contact">Or email us directly at <a href="mailto:hello@hireaxiom.com">hello@hireaxiom.com</a></p>
@@ -2385,6 +2385,19 @@ document.querySelectorAll('.faq-question').forEach(btn => {
     }
   });
 });
+
+// Contact form handler
+function handleContactForm(e) {
+  e.preventDefault();
+  var email = document.getElementById('contact-email').value.trim();
+  if (!email) return;
+  var subject = encodeURIComponent('Axiom Demo Request');
+  var body = encodeURIComponent('Hi Axiom team,\n\nI\'d like to learn more about Axiom for my business.\n\nMy email: ' + email + '\n\nPlease reach out at your earliest convenience.\n\nThanks!');
+  window.location.href = 'mailto:hello@hireaxiom.com?subject=' + subject + '&body=' + body;
+  // Show confirmation
+  var form = document.getElementById('contact-form');
+  form.innerHTML = '<p style="color: var(--accent); font-size: 18px; font-weight: 600; padding: 16px 0;">Thanks! We\'ll be in touch shortly.</p>';
+}
 </script>
 </body>
 </html>
