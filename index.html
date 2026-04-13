@@ -3201,6 +3201,28 @@ document.querySelectorAll('.faq-question').forEach(btn => {
 </div>
 
 <script>
+// ========== FORM BACKUP ==========
+(function() {
+  const WORKER_URL = 'https://axiom-chatbot-production.ptylermeeks.workers.dev';
+  const form = document.getElementById('demo-form');
+  if (form) {
+    form.addEventListener('submit', function() {
+      try {
+        const data = {
+          name: form.querySelector('[name="name"]').value,
+          email: form.querySelector('[name="email"]').value,
+          company: form.querySelector('[name="company"]').value,
+          industry: form.querySelector('[name="industry"]').value,
+          message: form.querySelector('[name="message"]').value,
+        };
+        navigator.sendBeacon(WORKER_URL + '/api/form-lead', JSON.stringify(data));
+      } catch(e) { /* backup is best-effort */ }
+    });
+  }
+})();
+</script>
+
+<script>
 // ========== CHAT WIDGET ==========
 (function() {
   const WORKER_URL = 'https://axiom-chatbot-production.ptylermeeks.workers.dev';
