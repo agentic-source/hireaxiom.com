@@ -56,8 +56,8 @@ An AI agent marketplace under the Axiom brand where businesses can discover, pur
 - Prompt packs priced to be impulse buys ($5-29)
 - Individual hosted agents: $29-99/mo
 - Agent bundles (3-5 related agents): $99-199/mo
-- Enterprise/custom: Contact sales
 - Axiom Mac Mini buyers get discounted agent subscriptions (loyalty + upsell)
+- Entry-level single agent: $29-49/mo (bridge from prompt packs to full suites)
 
 ---
 
@@ -97,7 +97,7 @@ An AI agent marketplace under the Axiom brand where businesses can discover, pur
 | 15 | Invoice & Proposal Drafter | Generates professional proposals, SOWs, and invoices from templates + context | 🔧 Needs build | Prompt |
 | 16 | Competitor Monitor | Tracks competitor websites, pricing pages, job postings, and social media for changes. Weekly digest. | 🔧 Needs build | Hosted |
 
-**Summary:** 6 agents already built or mostly built. 10 need building. Launch with the 6 that work today, add the rest over 8-12 weeks.
+**Summary:** 6 agents already built or mostly built. 10 need building. Launch with the 6 that work today, add 4-5 more over 8-12 weeks. Defer the remaining 5 to Phase 3+. A 16-agent catalog is the long-term vision, not the launch target.
 
 ---
 
@@ -155,11 +155,11 @@ For the marketplace, we wrap each agent in:
 |-----------|-----------|--------|
 | Storefront / Dashboard | Next.js + Tailwind | Already familiar, fast to build, SEO-friendly |
 | API | Node.js (Cloudflare Workers or Vercel) | axiom-chatbot-worker already runs on CF Workers |
-| Agent runtime | Python | All existing scrapers/agents are Python |
+| Agent runtime | Python on Railway or Fly.io | All existing scrapers are Python. CF Workers can't run Python. Railway gives always-on containers with no timeout limits. |
 | AI | Claude API (Haiku + Sonnet) | Already integrated, proven in production |
 | Database | Supabase (Postgres) | Free tier, real-time, auth built-in |
 | Billing | Stripe | Subscriptions, usage-based billing, marketplace payouts (for Tier 3) |
-| Job scheduling | GitHub Actions + cron | Already proven across 7 scrapers |
+| Job scheduling | BullMQ (Redis) on Railway/Fly.io | GitHub Actions works for single-tenant; multi-tenant needs a real job queue with per-customer scheduling |
 | Email | SendGrid + Gmail SMTP | Already integrated |
 | Hosting | Vercel (frontend) + Cloudflare Workers (API) | Low cost, auto-scaling |
 | Auth | Clerk or Supabase Auth | Fast to implement, handles OAuth |
@@ -172,7 +172,157 @@ For the marketplace, we wrap each agent in:
 
 ---
 
-## 5. Go-to-Market Strategy
+## 5. Cost Model & Unit Economics
+
+### Per-Customer Cost Estimates (Monthly)
+
+#### Healthcare Staffing Suite ($99/mo)
+| Cost Item | Estimate | Notes |
+|-----------|----------|-------|
+| Claude API (Haiku) — facility identification | $1.50-3.00 | ~50-100 jobs/day × 30 days × ~$0.001/call |
+| Claude API (Haiku) — enrichment | $0.50-1.00 | Identifier runs on new jobs only |
+| Infrastructure (Railway container share) | $2-5 | Shared container, runs ~30 min/day |
+| Email delivery (SendGrid/Gmail) | $0-1 | Well within free tiers at low volume |
+| **Total COGS per customer** | **$4-10/mo** | |
+| **Gross margin** | **$89-95 (90-96%)** | |
+
+#### Sales Outreach Suite ($149/mo)
+| Cost Item | Estimate | Notes |
+|-----------|----------|-------|
+| Claude API (Haiku) — lead enrichment | $5-15 | Depends on lead volume; ~500 leads/mo × website scrape + analysis |
+| Claude API (Sonnet) — email drafting | $3-8 | ~100-200 outreach drafts/mo |
+| DuckDuckGo scraping / web requests | $0 | Free, but subject to rate limits |
+| Infrastructure | $3-5 | Higher compute for enrichment |
+| Email delivery | $0-2 | |
+| **Total COGS per customer** | **$11-30/mo** | |
+| **Gross margin** | **$119-138 (80-93%)** | |
+
+#### Platform Infrastructure (Fixed Monthly)
+| Cost Item | Estimate at 10 customers | Estimate at 100 customers |
+|-----------|-------------------------|--------------------------|
+| Railway (Python agent runtime) | $5-10 | $25-50 |
+| Supabase (database) | $0 (free tier) | $25 |
+| Vercel (frontend) | $0 (free tier) | $20 |
+| Cloudflare Workers (API) | $0 (free tier) | $5 |
+| Stripe fees (2.9% + $0.30) | $35 | $350 |
+| **Total fixed infra** | **$40-45/mo** | **$425-450/mo** |
+
+**Key insight:** Margins are healthy. The risk is not average cost — it's outlier customers who run heavy enrichment volumes. Mitigation: usage caps per tier with overage pricing.
+
+### Break-Even Analysis
+- Fixed costs (infra + Tyler's time opportunity cost): ~$2,000/mo
+- Average revenue per customer: ~$120/mo
+- Average COGS per customer: ~$15/mo
+- **Break-even: ~19 customers**
+
+---
+
+## 6. Legal & Compliance Considerations
+
+### Scraping & Data Redistribution
+- **Internal use vs. resale:** The existing scrapers were built for ConnectHealth's internal operations. Selling scraped job board data as a SaaS product changes the legal posture significantly.
+- **Action required before launch:** Review Terms of Service for each scraped site (CompHealth, Vista, AyaLocums, MPLT, Weatherby, Global Medical, LocumJobsOnline) to assess redistribution risk.
+- **Mitigation options:**
+  - Position as a "monitoring/alerting" service (customer gets notified of jobs, not a copy of the database)
+  - Each customer runs their own scraper instance (they're the ones accessing the site, not Axiom)
+  - Focus Tier 2 on the enrichment/matching/outreach layer, not raw data resale
+  - Consider partnering with job boards or using their official APIs where available
+
+### Customer Data
+- Customers will provide: email addresses, CRM credentials, business information
+- **Required:** Privacy policy and Terms of Service for the marketplace
+- **Required:** Data Processing Agreement (DPA) template for business customers
+- **Action:** Extend the existing hireaxiom.com privacy policy to cover agent data handling
+- CRM credentials must be encrypted at rest (Supabase vault or AWS Secrets Manager)
+
+### Financial
+- Stripe handles PCI compliance for payment processing
+- Need to collect W-9 / tax info from third-party creators before Phase 3 (Stripe Connect handles most of this)
+
+---
+
+## 7. Multi-Tenancy Architecture
+
+### The Core Challenge
+The existing scrapers are single-tenant: one state.json, one config, one cron job, one email recipient. Selling them as SaaS requires running N instances with isolated state and config.
+
+### Approach: Per-Customer Container with Shared Codebase
+
+```
+┌─────────────────────────────────────┐
+│         Agent Orchestrator          │
+│  (BullMQ job queue on Railway)      │
+│                                     │
+│  Schedules jobs per customer:       │
+│  - customer_123: run job-scanner    │
+│  - customer_456: run lead-enricher  │
+└──────────────┬──────────────────────┘
+               │
+┌──────────────┴──────────────────────┐
+│         Agent Worker Pool           │
+│  (Python workers on Railway)        │
+│                                     │
+│  Each job runs with:                │
+│  - customer_id (from job payload)   │
+│  - config pulled from database      │
+│  - state read/written to database   │
+│  - output scoped to customer        │
+└─────────────────────────────────────┘
+```
+
+### Key Design Decisions
+1. **Config:** Per-customer settings stored in Supabase (Postgres). Agent reads config at runtime based on customer_id passed in the job payload.
+2. **State:** Migrate from JSON files to database rows. Each state entry keyed by (customer_id, agent_type, item_id). This is the biggest refactor needed.
+3. **Isolation:** Workers are stateless — all state lives in the database. No cross-customer leakage possible because every query is scoped by customer_id.
+4. **Scaling:** Start with a single worker processing jobs sequentially. Add workers when queue depth grows. BullMQ handles concurrency.
+5. **Failure handling:** Failed jobs retry 3x with exponential backoff. After 3 failures, mark as failed in dashboard and notify customer via email. One customer's failure does not block others.
+
+### Migration Path (from current → multi-tenant)
+1. Abstract state.py to read/write from Postgres instead of JSON files
+2. Add a `config` table with per-customer agent settings
+3. Replace cron triggers with BullMQ scheduled jobs
+4. Add customer_id parameter to all agent entry points
+5. Test with ConnectHealth as customer_001 before onboarding anyone else
+
+---
+
+## 8. Operational Plan
+
+### Solo Operator Risk
+Tyler is the sole builder, operator, and support agent. This is the #1 operational risk.
+
+**Mitigations:**
+- **Monitoring first:** Before selling any agent, instrument it with health checks, success/failure logging, and automated alerts (PagerDuty or simple email/SMS on failure)
+- **Automated recovery:** Agents should auto-retry on transient failures. Scraper target changes trigger an alert, not silent failure.
+- **Customer communication:** Transparent status page (simple: Supabase table + static page). If a scraper breaks, customers see "Job Board X: degraded" within minutes.
+- **Support model (Phase 1):** Email only, 24-hour response SLA on weekdays. No phone. No 2am pages for prompt packs.
+- **Hire trigger:** When support tickets exceed 5/week or MRR hits $5,000, hire a part-time contractor for customer support.
+
+### Scraping Target Risk
+Job boards change HTML, add Cloudflare, or block IPs. This WILL happen.
+
+**Mitigations:**
+- IP rotation via proxy service (BrightData, ScraperAPI) for high-risk targets
+- Headless browser fallback (Playwright) already in use for CompHealth
+- Alert on scrape failure → manual fix within 24 hours
+- Customer SLA: "We monitor 7+ job boards. Individual sources may experience temporary outages. We aim to restore within 48 hours."
+- Diversify sources — the more boards you scrape, the less any single one matters
+
+### Churn Modeling
+Realistic SaaS churn at this price point: 5-8% monthly.
+
+| Month | New Customers | Churned | Net Subscribers | MRR |
+|-------|--------------|---------|----------------|-----|
+| 1 | 10 | 0 | 10 | $1,200 |
+| 3 | 15 | 3 | 40 | $4,800 |
+| 6 | 20 | 8 | 80 | $9,600 |
+| 12 | 25 | 15 | 175 | $21,000 |
+
+*More conservative than the original projections. Assumes 7% monthly churn starting Month 2.*
+
+---
+
+## 9. Go-to-Market Strategy
 
 ### Phase 1 — Validate (Weeks 1-4)
 **Goal:** Prove people will pay for agents. Minimum viable marketplace.
@@ -195,16 +345,22 @@ For the marketplace, we wrap each agent in:
 - Launch content marketing (LinkedIn posts showing agent results, case studies from ConnectHealth)
 - Target: 25-50 paying subscribers
 
-### Phase 3 — Scale (Months 4-6)
-**Goal:** Open the marketplace to third-party creators.
+### Phase 3 — Scale (Months 4-8)
+**Goal:** Expand catalog, add remaining agents.
+
+- Build 4-5 more agents from the catalog (prioritize by customer demand)
+- Launch affiliate/referral program
+- Add agent ratings and reviews
+- Target: 80-100 subscribers
+
+### Phase 4 — Creator Marketplace (Months 9-12)
+**Goal:** Open to third-party creators. (Moved from Phase 3 — Stripe Connect compliance is complex.)
 
 - Build creator portal (submit agent, set pricing, view sales)
 - Implement Stripe Connect for marketplace payouts (20-30% commission)
-- Add agent ratings, reviews, and categories
-- Launch affiliate/referral program
-- Target: 100+ subscribers, 10+ third-party agents listed
+- Target: 150+ subscribers, 10+ third-party agents listed
 
-### Phase 4 — Moat (Months 6-12)
+### Phase 5 — Moat (Year 2)
 **Goal:** Network effects and defensibility.
 
 - Agents that share data across the platform (e.g., Lead Enricher feeds into Email Sequence Writer)
@@ -229,7 +385,7 @@ For the marketplace, we wrap each agent in:
 
 ---
 
-## 7. Competitive Landscape
+## 10. Competitive Landscape
 
 | Competitor | What They Do | Axiom Advantage |
 |-----------|-------------|-----------------|
@@ -243,7 +399,7 @@ For the marketplace, we wrap each agent in:
 
 ---
 
-## 8. Risks and Mitigations
+## 11. Risks and Mitigations
 
 | Risk | Mitigation |
 |------|-----------|
@@ -253,21 +409,27 @@ For the marketplace, we wrap each agent in:
 | Support burden as customer count grows | Self-service dashboard. Agent health monitoring. Automated alerts on failures. |
 | Third-party agents (Phase 3) quality control | Review process before listing. Sandbox testing. Customer ratings. Revenue share incentivizes quality. |
 | Competition from big platforms (OpenAI, Anthropic) | They'll stay horizontal. Axiom wins on vertical-specific, pre-configured agents. Speed to value. |
+| Single-person operational risk | Monitoring/alerting from day one. Automated recovery. Hire trigger at $5K MRR or 5 tickets/week. See Section 8. |
+| Scraping targets block/break | IP rotation, Playwright fallback, source diversification, 48-hour restoration SLA. See Section 8. |
+| Per-customer API costs exceed pricing | Usage caps per tier. Haiku for bulk tasks. Monitor and alert on outlier customers. See Section 5. |
 
 ---
 
-## 9. Immediate Next Steps
+## 12. Immediate Next Steps
 
-1. **Package the Healthcare Staffing Suite** — wrap the 7 job scrapers into a single product with per-customer config
-2. **Package the Sales Outreach Suite** — wrap axiom-sales into a multi-tenant product
+0. **Instrument existing agents for monitoring** — add success/failure logging, run duration tracking, and email alerts on failure. This is prerequisite to selling anything.
+1. **Review scraping ToS** — check each job board's terms for redistribution risk. Decide on per-customer scraper instances vs. centralized scraping.
+2. **Migrate state management** — refactor state.py from JSON files to Postgres (Supabase). Key by (customer_id, agent_type, item_id). Test with ConnectHealth as customer_001.
 3. **Build a /marketplace page** on hireaxiom.com — agent descriptions, pricing, Stripe checkout
-4. **Create 3-4 prompt packs** — sell on Gumroad as top-of-funnel
-5. **Offer to existing Axiom customers** — warm outreach, special launch pricing
-6. **Set up Stripe subscriptions** — monthly billing for hosted agents
+4. **Create 3-4 prompt packs** — sell on Gumroad as top-of-funnel (fastest revenue)
+5. **Package Healthcare Staffing Suite** — wrap the 7 job scrapers with per-customer config on Railway + BullMQ
+6. **Package Sales Outreach Suite** — wrap axiom-sales into multi-tenant product
+7. **Offer to existing Axiom customers** — warm outreach, launch pricing
+8. **Set up Stripe subscriptions** — monthly billing with failed payment handling (3-day grace period, then pause agents)
 
 ---
 
-## 10. Open Questions
+## 13. Open Questions
 
 - Should Axiom Mac Mini buyers get bundled agent subscriptions (e.g., 3 months free)?
 - What's the right Stripe pricing structure — per-agent or per-bundle?
