@@ -1,0 +1,36 @@
+name: Auto-merge SEO agent PRs
+
+on:
+  pull_request:
+    types: [opened, reopened, labeled, synchronize]
+
+concurrency:
+  group: auto-merge-seo-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  maybe-merge:
+    if: startsWith(github.event.pull_request.head.ref, 'seo-agent/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Gate on quality labels, then squash-merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          labels=$(gh pr view "$PR" --repo "$REPO" --json labels -q '[.labels[].name] | join(",")')
+          echo "PR #$PR labels: $labels"
+          needed=(quality/word-count-ok quality/links-ok quality/schema-ok)
+          for n in "${needed[@]}"; do
+            if [[ ",$labels," != *",$n,"* ]]; then
+              echo "Missing required label: $n — leaving PR open for human review"
+              exit 0
+            fi
+          done
+          echo "All quality gates passed — squash-merging"
+          gh pr merge "$PR" --repo "$REPO" --squash --delete-branch --admin
